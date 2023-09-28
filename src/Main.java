@@ -233,7 +233,7 @@ public class Main {
 
     public static List getDoctorStrange(){
         ArrayList<Integer> issues = new ArrayList<>();
-        File file = new File("collectionLists/doctorStrangeVol2.txt");
+        File file = new File("collectionLists/doctorStrangeVol1.txt");
         Scanner scan;
         try{
             scan = new Scanner(file);
