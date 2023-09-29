@@ -60,6 +60,10 @@ public class Main {
             filePath+="starWarsVol4.txt";
         }else if(seriesString.equals("Fantastic Four Annual Vol. 1")){
             filePath+="fantasticFourAnnualVol1.txt";
+        }else if(seriesString.equals("Fantastic Four Annual Vol. 3")){
+            filePath+="fantasticFourAnnualVol3.txt";
+        }else if(seriesString.equals("Fantastic Four Annual Vol. 4")){
+            filePath+="fantasticFourAnnualVol4.txt";
         }
         File file = new File(filePath);
         try{
@@ -114,6 +118,10 @@ public class Main {
             series = getStarWarsVol4();
         }else if(seriesString.equals("Fantastic Four Annual Vol. 1")){
             series = getFantasticFourAnnualVol1();
+        }else if(seriesString.equals("Fantastic Four Annual Vol. 3")){
+            series = getFantasticFourAnnualVol3();
+        }else if(seriesString.equals("Fantastic Four Annual Vol. 4")){
+            series = getFantasticFourAnnualVol4();
         }
         series.add(new Integer(issueNumber));//deprecated whoops, will fix this later TODO
         Collections.sort(series);
@@ -279,6 +287,16 @@ public class Main {
             }
         }else if(selection == 10){
             issues = getFantasticFourAnnualVol1();
+            if(issues == null){
+                System.out.println("We have an issue");
+            }
+        }else if(selection == 11){
+            issues = getFantasticFourAnnualVol3();
+            if(issues == null){
+                System.out.println("We have an issue");
+            }
+        }else if(selection == 12){
+            issues = getFantasticFourAnnualVol4();
             if(issues == null){
                 System.out.println("We have an issue");
             }
@@ -451,6 +469,42 @@ public class Main {
     public static List getFantasticFourAnnualVol1(){
         ArrayList<Integer> issues = new ArrayList<>();
         File file = new File("collectionLists/fantasticFourAnnualVol1.txt");
+        Scanner scan;
+        try{
+            scan = new Scanner(file);
+        }
+        catch(FileNotFoundException e){
+            System.out.println("Cannot Find List Of Issues");
+            return null;//make null check in calling function TODO
+        }
+        while(scan.hasNextLine()){
+            issues.add(Integer.parseInt(scan.nextLine()));
+        }
+        scan.close();
+        return issues;
+    }
+
+    public static List getFantasticFourAnnualVol3(){
+        ArrayList<Integer> issues = new ArrayList<>();
+        File file = new File("collectionLists/fantasticFourAnnualVol3.txt");
+        Scanner scan;
+        try{
+            scan = new Scanner(file);
+        }
+        catch(FileNotFoundException e){
+            System.out.println("Cannot Find List Of Issues");
+            return null;//make null check in calling function TODO
+        }
+        while(scan.hasNextLine()){
+            issues.add(Integer.parseInt(scan.nextLine()));
+        }
+        scan.close();
+        return issues;
+    }
+
+    public static List getFantasticFourAnnualVol4(){
+        ArrayList<Integer> issues = new ArrayList<>();
+        File file = new File("collectionLists/fantasticFourAnnualVol4.txt");
         Scanner scan;
         try{
             scan = new Scanner(file);
