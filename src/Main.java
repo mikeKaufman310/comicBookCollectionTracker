@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,8 +24,10 @@ public class Main {
             updateSeries(series, seriesSelection);
         }else if(selection == 2){//add new series
             //not yet implemented
-        //}else if(selection ==3){//display issues of a series (functionality not yet considered in methods) TODO
-            //not yet implemented
+        }else if(selection ==3){//display issues of a series (functionality not yet considered in methods) TODO
+            int seriesCount = printSeriesMenu();
+            int seriesSelection = getSeriesMenuInput(stdInScanner, seriesCount);
+            printSeries(seriesSelection);
         }else{//quit
             System.exit(0);
         }
@@ -84,14 +87,39 @@ public class Main {
     }
 
     public static void printSeries(int selection){
-        String series = getSeriesString(selection);
+        String seriesString = getSeriesString(selection);
+        List series = null;
         //coding for functionality at the moment, not to be smart yet TODO dynamically add series to switch statement
-        if(series.equals("Fantastic Four Vol. 1")){
-            //print fan four method TODO
-        }else if(series.equals("Doctor Strange Vol. 1")){
-            //print doc strange method TODO
+        if(seriesString.equals("Doctor Strange Vol. 1")){
+            series = getDoctorStrangeVol1();//need to refactor this method name
+        }else if(seriesString.equals("Fantastic Four Vol. 1")){
+            series = getFantasticFourVol1();//need to refactor this method name
+        }else if(seriesString.equals("Fantastic Four Vol. 2")){
+            series = getFantasticFourVol2();
+        }else if(seriesString.equals("Fantastic Four Vol. 3")){
+            series = getFantasticFourVol3();
+        }else if(seriesString.equals("Fantastic Four Vol. 4")){
+            series = getFantasticFourVol4();
+        }else if(seriesString.equals("Fantastic Four Vol. 5")){
+            series = getFantasticFourVol5();
+        }else if(seriesString.equals("Fantastic Four Vol. 6")){
+            series = getFantasticFourVol6();
+        }else if(seriesString.equals("Star Wars Vol. 1")){
+            series = getStarWarsVol1();
+        }else if(seriesString.equals("Star Wars Vol. 4")){
+            series = getStarWarsVol4();
+        }else if(seriesString.equals("Fantastic Four Annual Vol. 1")){
+            series = getFantasticFourAnnualVol1();
+        }else if(seriesString.equals("Fantastic Four Annual Vol. 3")){
+            series = getFantasticFourAnnualVol3();
+        }else if(seriesString.equals("Fantastic Four Annual Vol. 4")){
+            series = getFantasticFourAnnualVol4();
         }
-        //add other series TODO
+        Iterator<Integer> it = series.iterator();
+        System.out.println(seriesString + ":");
+        while(it.hasNext()){
+            System.out.println(it.next());
+        }
     }
 
     public static List addIssueToSeries(int seriesSelection, int issueNumber){
@@ -173,7 +201,7 @@ public class Main {
             System.out.println("Invalid Input, Try Again!");
             boolean go = false;
             do{
-                System.out.print("\nEnter a Number (1-"+upperBound+"):");
+                System.out.print("\nEnter a Number (1-"+upperBound+"):\t");
                 selection = Integer.parseInt(stdInScanner.nextLine());
                 if(!(selection > 0 && selection < (upperBound+1))){
                     System.out.println("Invalid Input, Try Again!");
@@ -191,9 +219,10 @@ public class Main {
         System.out.println("-------------------");
         System.out.println("1. Add New Issue");
         System.out.println("2. Add New Series");
-        System.out.println("3. Quit");
+        System.out.println("3. Display Series Issues");
+        System.out.println("4. Quit");
         System.out.println("-------------------");
-        System.out.print("Enter a Number (1-3):");
+        System.out.print("Enter a Number (1-4):");
     }
 
     public static int printSeriesMenu(){
@@ -226,9 +255,9 @@ public class Main {
             System.out.println("Invalid Input, Try Again!");
             boolean go = false;
             do{
-                System.out.print("\nEnter a Number (1-3):");
+                System.out.print("\nEnter a Number (1-4):");
                 selection = Integer.parseInt(stdInScanner.nextLine());
-                if(!(selection > 0 && selection < 4)){
+                if(!(selection > 0 && selection < 5)){
                     System.out.println("Invalid Input, Try Again!");
                 }else{
                     go = true;
